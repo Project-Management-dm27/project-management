@@ -91,7 +91,7 @@ class Table2 extends Component {
     render() {
             return (
             < div >
-                {this.getChartData}
+               
                 <LineChart width={725} height={375} data={this.getChartData()} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                     <Line strokeWidth={2} type="monotone"  name="Completed Tasks" dataKey="count" stroke="#da863d" />
                     <YAxis />
