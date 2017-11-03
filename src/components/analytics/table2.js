@@ -12,8 +12,18 @@ class Table2 extends Component {
             data: []
         }
     }
+    componentWillMount() {
+        if (!this.props.user) {
+            return window.location.href = 'http://localhost:3000/#/'
 
+        }
+
+    }
     componentDidMount() {
+        if (!this.props.user) {
+            return window.location.href = 'http://localhost:3000/#/'
+
+        } else {
         axios.get(`api/company/analytics/table/${this.props.user.user_company}`).then(res => {
             console.log("DATAAAA:", res.data)
             this.setState({
@@ -21,6 +31,7 @@ class Table2 extends Component {
             })
         })
     }
+}
 
     getCompletedTasks(user) {
         console.log("USER", user)
@@ -113,7 +124,7 @@ class Table2 extends Component {
             return (
             < div >
                 {this.getChartData}
-                <LineChart width={770} height={375} data={this.getChartData()} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                <LineChart width={725} height={375} data={this.getChartData()} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                     <Line strokeWidth={2} type="monotone" dataKey="count" stroke="#da863d" />
                     {/* <Line strokeWidth={2} type="monotone" dataKey="task" stroke="#ce1c2e" /> */}
                     {/* <Line strokeWidth={2} type="monotone" dataKey="7" stroke="#547cd5" />
@@ -123,7 +134,6 @@ class Table2 extends Component {
                     {<Tooltip />}
                     <Legend />
                 </LineChart>
-                <button onClick={() => this.getChartData()}></button>
             </div >
         )
 
